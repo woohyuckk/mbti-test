@@ -2,39 +2,66 @@ import { useState } from "react";
 import InputForm from "../components/common/InputForm";
 import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../api/auth";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ id: "", password: "" });
-  const [loginErrorMessage, setLoginErrorMessage] = useState({idError: "", passwordError:""});
+  const [loginErrorMessage, setLoginErrorMessage] = useState({
+    idError: "",
+    passwordError: "",
+  });
+  const navigate = useNavigate();
+
+  const handleIdChange = (e) => {
+    const value = e.target.value;
+    setLoginData((prev) => ({ ...prev, id: value }));
+
+    if (!loginData.id.trim()) {
+      setLoginErrorMessage((prev) => ({
+        ...prev,
+        idError: "아이디를 확인 해 주세요.",
+      }));
+    } else {
+      setLoginErrorMessage((prev) => ({
+        ...prev,
+        idError: "",
+      }));
+    }
+  };
 
   // 비밀번호 입력 시 동적 유효성 검사 (8자 미만이면 에러 표시)
   const handlePasswordChange = (e) => {
     const value = e.target.value;
-    setLoginData((prev) => ({...prev, password: value }) );
-    if (value.length > 0 && value.length < 8) {
-      setLoginErrorMessage((prev)=>('비밀번호는 8글자 이상으로 작성해야 합니다.'));
+    setLoginData((prev) => ({ ...prev, password: value }));
+    if (value.length < 8) {
+      setLoginErrorMessage((prev) => ({
+        ...prev,
+        passwordError: "비밀번호는 8글자 이상으로 작성해야 합니다.",
+      }));
     } else {
-      setPasswordError('');
+      setLoginErrorMessage((prev) => ({
+        ...prev,
+        passwordError: "",
+      }));
     }
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    let valid = true;
 
-    if (!username.trim()) {
-      setId('아이디를 다시 확인해주세요.');
-      valid = false;
-    } else {
-      setId('');
-    }
-
-    if (valid) {
-      console.log('로그인 제출:', { username, password });
-      // 로그인 API 호출 또는 추가 로직 처리
-    }
+    try {
+      const a = await login(loginData);
+      if (a.success) {
+        alert("로그인 성공")
+        navigate('/')
+        console.log(a)
+      }
+    }catch (error) {
+      console.error(`${error.name}: ${error.message}`)
+    } 
   };
+
 
   return (
     <InputForm title="로그인" onSubmit={handleLoginSubmit}>
@@ -44,9 +71,9 @@ const Login = () => {
         id="login_username"
         name="username"
         placeholder="아이디를 입력하세요"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        error={idError}
+        value={loginData.id}
+        onChange={handleIdChange}
+        error={loginErrorMessage.idError}
       />
       <InputField
         label="비밀번호"
@@ -54,12 +81,14 @@ const Login = () => {
         id="login_password"
         name="password"
         placeholder="비밀번호를 입력하세요"
-        value={password}
+        value={loginData.password}
         onChange={handlePasswordChange}
-        error={passwordError}
+        error={loginErrorMessage.passwordError}
       />
       <Button type="submit">Login</Button>
-      <div><Link to='/signup'>아이디가 없으신가요? 회원가입하러가기</Link></div>
+      <div>
+        <Link to="/signup">아이디가 없으신가요? 회원가입하러가기</Link>
+      </div>
     </InputForm>
   );
 };

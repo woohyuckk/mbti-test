@@ -34,7 +34,6 @@ auth.interceptors.response.use(
 
 export const register = async (userData) => { 
   const response = await auth.post('/register', userData);
-  
   return response.data;
 }
 

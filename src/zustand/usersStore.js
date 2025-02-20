@@ -1,12 +1,11 @@
 import { create } from "zustand"
-import { persist,  } from "zustand/middleware"
-
+import { persist } from "zustand/middleware"
 
 
 const useUsersStore = create(persist((set) => {
   return {
     users: {
-      token : ""
+      token: ""
     },
     login: (payload) => {
       set((state) => {
@@ -18,7 +17,7 @@ const useUsersStore = create(persist((set) => {
     logout: () => {
       set((state) => {
         return {
-          users: state.users.toekn =""
+          users: state.users.toekn = ""
         }
       })
 

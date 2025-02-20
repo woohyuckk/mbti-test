@@ -1,7 +1,9 @@
+import Router from "./shared/router"
 
 const App = () => {
   return (
-    <div>App</div>
+    
+    <Router/>
   )
 }
 

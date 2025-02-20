@@ -6,8 +6,12 @@ import Results from "../pages/Results";
 import Test from "../pages/Test";
 import Profile from "../pages/Profile";
 import Layout from "../components/layout/Layout";
+import useUsersStore from "../zustand/usersStore";
 
 const Router = () => {
+
+  const a = useUsersStore((state) => state.users);
+  console.log(a)
   return (
     <BrowserRouter>
       <Routes>

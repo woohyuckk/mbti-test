@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { MdOutlineMoreVert } from "react-icons/md";
 
 const Header = () => {
   // 예시로 로그인 상태(true)로 설정, 실제 로직에 맞게 변경하세요.
@@ -77,12 +78,12 @@ const Header = () => {
           </nav>
 
           {/* 모바일: 더보기 버튼 */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
             <button
               onClick={toggleMobileMenu}
               className="text-gray-700 hover:text-indigo-600 transition-colors duration-200 "
             >
-              더보기
+              <MdOutlineMoreVert size={30} />
             </button>
           </div>
         </div>

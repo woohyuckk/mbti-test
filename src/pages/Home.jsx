@@ -1,11 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="w-full flex flex-col items-center justify-center bg-gray-200">
       <h3 className="text-5xl font-bold my-6 ">무료 성격 테스트</h3>
       <p className="mb-8">
         자신의 성격 유형을 확인할 수 있도록 솔직하게 답변해주세요.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 p-8">
         <div className="bg-white shadow-md rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">성격 유형 검사</h2>
           <p>
@@ -27,7 +32,7 @@ const Home = () => {
           </p>
         </div>
       </div>
-      <button className="inline-block  bg-red-500 text-white py-2 px-6 rounded-full  transition mb-4 hover:font-bold">
+      <button onClick={()=>navigate('/test')} className="inline-block  bg-red-500 text-white py-2 px-6 rounded-full  transition mb-4 hover:font-bold">
         내 성격 알아보러 가기
       </button>
     </div>

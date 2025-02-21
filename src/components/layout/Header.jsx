@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineMoreVert } from "react-icons/md";
-import useAuthStore from "../../authStore";
+import useAuthStore from "../../zustand/authStore";
 
 const Header = () => {
   // 예시로 로그인 상태(true)로 설정, 실제 로직에 맞게 변경하세요.

@@ -42,3 +42,16 @@ export const login = async (userData) => {
   const response = await auth.post('/login', userData);
   return response.data;
 };
+
+export const getUserProfile = async (token) => {
+  const response = await auth.get('/user', {
+    headers: {
+      Authorization : `Bearer ${token}`
+    }
+  })
+  return response.data
+};
+
+export const updateProfile = async (formData) => {
+
+};

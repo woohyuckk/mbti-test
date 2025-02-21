@@ -4,7 +4,7 @@ import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
-import useAuthStore from "../authStore";
+import useAuthStore from "../zustand/authStore";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ id: "", password: "" });
@@ -91,7 +91,9 @@ const Login = () => {
         onChange={handlePasswordChange}
         error={loginErrorMessage.passwordError}
       />
-      <Button type="submit" isDisabled={loginErrorMessage}>Login</Button>
+      <Button type="submit" isDisabled={loginErrorMessage}>
+        Login
+      </Button>
       <div>
         <Link to="/signup">아이디가 없으신가요? 회원가입하러가기</Link>
       </div>

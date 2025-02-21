@@ -5,9 +5,10 @@ import axios from "axios";
 const API_URL = 'https://www.nbcamp-react-auth.link';
 const auth = axios.create({
   baseURL: API_URL,
-  
+
 })
-  auth.interceptors.request.use(
+
+auth.interceptors.request.use(
   function (config) {
     // 요청을 보내기 전 수행
     console.log("인터셉트 요청 성공!");
@@ -32,7 +33,7 @@ auth.interceptors.response.use(
   },
 );
 
-export const register = async (userData) => { 
+export const register = async (userData) => {
   const response = await auth.post('/register', userData);
   return response.data;
 }

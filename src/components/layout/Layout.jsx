@@ -4,7 +4,7 @@ import Main from './Main';
 
 const Layout = () => {
   return (
-    <div className='container flex flex-col h-screen'>
+    <div className='container flex flex-col h-screen '>
       <Header>
         <h1>My App</h1>
 

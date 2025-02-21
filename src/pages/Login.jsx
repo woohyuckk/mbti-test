@@ -91,7 +91,7 @@ const Login = () => {
         onChange={handlePasswordChange}
         error={loginErrorMessage.passwordError}
       />
-      <Button type="submit">Login</Button>
+      <Button type="submit" isDisabled={loginErrorMessage}>Login</Button>
       <div>
         <Link to="/signup">아이디가 없으신가요? 회원가입하러가기</Link>
       </div>

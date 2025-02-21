@@ -1,11 +1,14 @@
 import  { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineMoreVert } from "react-icons/md";
+import useAuthStore from '../../authStore';
 
 const Header = () => {
   // 예시로 로그인 상태(true)로 설정, 실제 로직에 맞게 변경하세요.
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { isAuthnticated, logout } = useAuthStore((state) => state); 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(prev => !prev);
@@ -13,7 +16,7 @@ const Header = () => {
 
   const handleLogout = () => {
     // 실제 로그아웃 로직 (예: 토큰 삭제, 상태 갱신 등)
-    setIsLoggedIn(false);
+    logout();
   };
 
   return (
@@ -32,7 +35,7 @@ const Header = () => {
 
           {/* 우측: 데스크탑 네비게이션 */}
           <nav className="hidden md:flex items-center space-x-4">
-            {isLoggedIn ? (
+            {isAuthnticated ? (
               <>
                 <Link 
                   to="/profile" 

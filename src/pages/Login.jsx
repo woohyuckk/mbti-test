@@ -4,6 +4,7 @@ import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
+import useAuthStore from "../authStore";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ id: "", password: "" });
@@ -11,6 +12,8 @@ const Login = () => {
     idError: "",
     passwordError: "",
   });
+
+  const { signin } = useAuthStore((state) => state);
   const navigate = useNavigate();
 
   const handleIdChange = (e) => {
@@ -51,17 +54,20 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const a = await login(loginData);
-      if (a.success) {
-        alert("로그인 성공")
-        navigate('/')
-        console.log(a)
+      const {
+        nickname,
+        accessToken: token,
+        success: isAuthnticated,
+      } = await login(loginData);
+      if (isAuthnticated) {
+        alert("로그인 성공");
+        navigate("/");
+        signin({ token, isAuthnticated, nickname });
       }
-    }catch (error) {
-      console.error(`${error.name}: ${error.message}`)
-    } 
+    } catch (error) {
+      console.error(`${error.name}: ${error.message}`);
+    }
   };
-
 
   return (
     <InputForm title="로그인" onSubmit={handleLoginSubmit}>

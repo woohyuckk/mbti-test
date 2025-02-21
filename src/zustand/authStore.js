@@ -7,11 +7,13 @@ const useAuthStore = create(persist((set) => {
     token: "",
     isAuthnticated: false,
     nickname: "",
+    userId: "",
     signin: (payload) => {
       set({
         token: payload.token,
         isAuthnticated: payload.isAuthnticated,
-        nickname : payload.nickname
+        nickname: payload.nickname,
+        userId: payload.userId
       }
       )
     },

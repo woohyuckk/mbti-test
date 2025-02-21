@@ -3,9 +3,9 @@ import axios from "axios";
 
 
 const API_URL = 'https://www.nbcamp-react-auth.link';
+
 const auth = axios.create({
   baseURL: API_URL,
-
 })
 
 auth.interceptors.request.use(

@@ -9,7 +9,21 @@ export const testResultsApi = axios.create({
 
 
 export const getTestResults = async () => {
-  const response = await testResultsApi.get('/testResults');
-  return response.data
-
+  try {
+    const response = await testResultsApi.get('/testResults');
+    return response.data
+  } catch (error) {
+    console.error(error);  
+  }
 }
+
+
+export const createTestResult = async(result) => {
+  try {
+    const response = await testResultsApi.post('/testResults',result) 
+    return response.data;
+  }catch(error){
+    console.error(error)
+  }
+}
+

@@ -58,11 +58,12 @@ const Login = () => {
         nickname,
         accessToken: token,
         success: isAuthnticated,
+        userId
       } = await login(loginData);
       if (isAuthnticated) {
         alert("로그인 성공");
         navigate("/");
-        signin({ token, isAuthnticated, nickname });
+        signin({ token, isAuthnticated, nickname,userId });
       }
     } catch (error) {
       console.error(`${error.name}: ${error.message}`);

@@ -3,12 +3,15 @@ import { questions } from "../../data/question";
 
 const TestForm = ({ onSubmit }) => {
   const [answers, setAnswers] = useState(
-    Array(questions.length).fill({ type: "", answer: "" }),
+    Array(questions.length).fill({ type: "", answer: "" , answerType : ""}),
   );
 
   const handleChange = (index, answer) => {
     const newAnswers = [...answers];
-    newAnswers[index] = { type: questions[index].type, answer };
+    newAnswers[index] = {
+      type: questions[index].type, answer,
+      answerType: questions[index].options.indexOf(answer)
+     };
     setAnswers(newAnswers);
   };
 

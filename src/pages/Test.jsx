@@ -2,14 +2,44 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
 import TestForm from "../components/test/TestForm";
+import useAuthStore from "../zustand/authStore";
+import { FormattingDate } from "../utils/dateFormat";
+import { createTestResult } from "../api/testResults";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const TestPage = () => {
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
+  const { userId, nickname } = useAuthStore((state) => state);
+  const queryClient = useQueryClient();
+  
 
+  const addTestResult = useMutation({
+    mutationFn: (newTestResult) => createTestResult(newTestResult),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["testResults"]);
+    },
+  });
+  
   const handleTestSubmit = async (answers) => {
+    
     const mbtiResult = calculateMBTI(answers);
-		/* Test 결과는 mbtiResult 라는 변수에 저장이 됩니다. 이 데이터를 어떻게 API 를 이용해 처리 할 지 고민해주세요. */
+    const newTestResult = {
+      nickname,
+      result: mbtiResult,
+      visibility: true,
+      date: FormattingDate(new Date()),
+      userId
+    }
+    try {
+
+      await addTestResult.mutateAsync(newTestResult)
+    } catch (error) {
+      console.error(error);
+    }
+    setResult(mbtiResult)
+
+    /* Test 결과는 mbtiResult 라는 변수에 저장이 됩니다. 이 데이터를 어떻게 API 를 이용해 처리 할 지 고민해주세요. */
   };
 
   const handleNavigateToResults = () => {
@@ -37,7 +67,7 @@ const TestPage = () => {
             </p>
             <button
               onClick={handleNavigateToResults}
-              className="w-full bg-primary-color text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
+              className="w-full bg-slate-400 text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
             >
               결과 페이지로 이동하기
             </button>

@@ -35,11 +35,11 @@ export const calculateMBTI = (answers) => {
   const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
   // answers 배열을 순회하며 점수 누적
-  answers.forEach(({ type, answer }) => {
+  answers.forEach(({ type,  answerType }) => {
     const [option1, option2] = type.split("/"); // E/I, S/N 등의 유형 분리
-    if (answer === option1) {
+    if (answerType === 0) { 
       scores[option1]++;
-    } else if (answer === option2) {
+    } else if (answerType === 1) { 
       scores[option2]++;
     }
   });
@@ -52,14 +52,12 @@ export const calculateMBTI = (answers) => {
   return result;
 };
 
-// 사용 예시:
-const answers = [
-  { type: "E/I", answer: "E" },
-  { type: "S/N", answer: "S" },
-  { type: "T/F", answer: "T" },
-  { type: "J/P", answer: "J" },
-  // 추가 질문들...
-];
+// // 사용 예시:
+// const answers = [
+//   { type: "E/I", answer: "E" },
+//   { type: "S/N", answer: "S" },
+//   { type: "T/F", answer: "T" },
+//   { type: "J/P", answer: "J" },
+//   // 추가 질문들...
+// ];
 
-const mbtiResult = calculateMBTI(answers);
-console.log("MBTI 결과:", mbtiResult); // 예: "MBTI 결과: ESTJ"

@@ -1,10 +1,13 @@
-import Router from "./shared/router"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Router from "./shared/router";
 
 const App = () => {
+  const queryClient = new QueryClient();
   return (
-    
-    <Router/>
-  )
-}
+    <QueryClientProvider client={queryClient}>
+      <Router />
+    </QueryClientProvider>
+  );
+};
 
-export default App
+export default App;

@@ -39,7 +39,6 @@ export const register = async (userData) => {
 }
 
 export const login = async (userData) => {
-  console.log(userData)
   const response = await authapi.post('/login', userData);
   return response.data;
 };
@@ -47,7 +46,7 @@ export const login = async (userData) => {
 export const getUserProfile = async (token) => {
   const response = await authapi.get('/user', {
     headers: {
-      Authorization : `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     }
   })
   return response.data

@@ -10,7 +10,6 @@ const ResultCard = ({ result }) => {
   const deleteTestResultHandler = (id) => {
     removeTestResult.mutate({ id })
   }
-  console.log(result.id)
   return (
     <div
       className={`p-4 border-2 border-solid border-red-300 rounded shadow-md transition-colors duration-300 max-w-4xl w-full mx-auto

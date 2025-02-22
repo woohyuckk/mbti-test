@@ -3,6 +3,7 @@ import InputForm from "../components/common/InputForm";
 import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
 import { register } from "../api/auth";
+import { isValidId, isValidNickname, isValidPassword } from "../utils/signup/Validation";
 
 const Signup = () => {
   const [signUpForm, setSignUpForm] = useState({
@@ -11,55 +12,29 @@ const Signup = () => {
     nickname : "",
   })
 
-
   const [authMessage, setAuthMessage] = useState({
-    nicknameError: "",
-    idError: "",
-    passwordError: "",
+    id: "",
+    password: "",
+    nickname: "",
   });
 
   const handleIdChange = (e) => {
     const { name, value } = e.target;
     setSignUpForm((prev) => ({ ...prev, [name]: value })) 
-    
-    if (value.length > 0 && value.length < 8) {
-      setAuthMessage((message) => ({
-        ...message,
-        idError: "ID는 8글자 이상으로 작성해야 합니다.",
-      }));
-    } else {
-      setAuthMessage((message) => ({ ...message, idError: "" }));
-    }
+    setAuthMessage((message)=>({...message, [name] : isValidId(value)}))
   }
 
   // 비밀번호 입력 시 동적 유효성 검사 (8자 미만이면 에러 표시)
   const handlePasswordChange = (e) => {
     const { name, value } = e.target;
     setSignUpForm((prev) => ({ ...prev, [name]: value })) 
-    
-    if (value.length > 0 && value.length < 8) {
-      setAuthMessage((message) => ({
-        ...message,
-        passwordError: "비밀번호는 8글자 이상으로 작성해야 합니다.",
-      }));
-    } else {
-      setAuthMessage((message) => ({ ...message, passwordError: "" }));
-    }
+    setAuthMessage((message)=>({...message, [name] : isValidPassword(value)}))
   };
 
   const handleNicknameChange = (e) => {
     const { name, value } = e.target;
     setSignUpForm((prev) => ({ ...prev, [name]: value })) 
-
-    if (!signUpForm.nickname.trim()) {
-      setAuthMessage((message) => ({
-        ...message,
-        nicknameError: "닉네임에는 공백을 사용할 수 없습니다.",
-      }));
-      return;
-    } else {
-      setAuthMessage((message) => ({ ...message, nicknameError: "" }));
-    }
+    setAuthMessage((message)=>({...message, [name] : isValidNickname(value)}))
   };
 
   const handleSignupSubmit = async (e) => {
@@ -86,7 +61,7 @@ const Signup = () => {
         placeholder="닉네임을 입력하세요"
         value={signUpForm.nickname}
         onChange={handleNicknameChange}
-        error={authMessage.nicknameError}
+        error={authMessage.nickname}
       />
       <InputField
         label="아이디"
@@ -96,7 +71,7 @@ const Signup = () => {
         placeholder="이메일을 입력하세요"
         value={signUpForm.id}
         onChange={handleIdChange}
-        error={authMessage.idError}
+        error={authMessage.id}
       />
       <InputField
         label="비밀번호"
@@ -106,7 +81,7 @@ const Signup = () => {
         placeholder="비밀번호를 입력하세요"
         value={signUpForm.password}
         onChange={handlePasswordChange}
-        error={authMessage.passwordError}
+        error={authMessage.password}
       />
       <Button type="submit">회원가입 완료</Button>
     </InputForm>

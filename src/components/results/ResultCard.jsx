@@ -1,4 +1,4 @@
-import { useResults } from "../../hooks/useResults";
+import { useResults } from "../../utils/hooks/useResults";
 
 const ResultCard = ({ result }) => {
   const { updateTestResult, removeTestResult } = useResults();

@@ -1,41 +1,11 @@
-import { useState } from "react";
 import InputForm from "../components/common/InputForm";
 import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
 import { register } from "../api/auth";
-import { isValidId, isValidNickname, isValidPassword } from "../utils/signup/Validation";
+import { useSignUp } from "../utils/hooks/useSignUp";
 
 const Signup = () => {
-  const [signUpForm, setSignUpForm] = useState({
-    id: "",
-    password: "",
-    nickname : "",
-  })
-
-  const [authMessage, setAuthMessage] = useState({
-    id: "",
-    password: "",
-    nickname: "",
-  });
-
-  const handleIdChange = (e) => {
-    const { name, value } = e.target;
-    setSignUpForm((prev) => ({ ...prev, [name]: value })) 
-    setAuthMessage((message)=>({...message, [name] : isValidId(value)}))
-  }
-
-  // 비밀번호 입력 시 동적 유효성 검사 (8자 미만이면 에러 표시)
-  const handlePasswordChange = (e) => {
-    const { name, value } = e.target;
-    setSignUpForm((prev) => ({ ...prev, [name]: value })) 
-    setAuthMessage((message)=>({...message, [name] : isValidPassword(value)}))
-  };
-
-  const handleNicknameChange = (e) => {
-    const { name, value } = e.target;
-    setSignUpForm((prev) => ({ ...prev, [name]: value })) 
-    setAuthMessage((message)=>({...message, [name] : isValidNickname(value)}))
-  };
+  const { signUpForm, authMessage, handleAuthvalidation } = useSignUp();
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +30,7 @@ const Signup = () => {
         name="nickname"
         placeholder="닉네임을 입력하세요"
         value={signUpForm.nickname}
-        onChange={handleNicknameChange}
+        onChange={handleAuthvalidation}
         error={authMessage.nickname}
       />
       <InputField
@@ -70,7 +40,7 @@ const Signup = () => {
         name="id"
         placeholder="이메일을 입력하세요"
         value={signUpForm.id}
-        onChange={handleIdChange}
+        onChange={handleAuthvalidation}
         error={authMessage.id}
       />
       <InputField
@@ -80,10 +50,12 @@ const Signup = () => {
         name="password"
         placeholder="비밀번호를 입력하세요"
         value={signUpForm.password}
-        onChange={handlePasswordChange}
+        onChange={handleAuthvalidation}
         error={authMessage.password}
       />
-      <Button type="submit">회원가입 완료</Button>
+      <Button type="submit" isDisabled={authMessage}>
+        회원가입 완료
+      </Button>
     </InputForm>
   );
 };

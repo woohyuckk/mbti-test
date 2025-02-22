@@ -5,9 +5,12 @@ import Button from "../components/common/Button";
 import { register } from "../api/auth";
 
 const Signup = () => {
-  const [nickname, setNickname] = useState("");
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [signUpForm, setSignUpForm] = useState({
+    id: "",
+    password: "",
+    nickname : "",
+  })
+
 
   const [authMessage, setAuthMessage] = useState({
     nicknameError: "",
@@ -15,10 +18,25 @@ const Signup = () => {
     passwordError: "",
   });
 
+  const handleIdChange = (e) => {
+    const { name, value } = e.target;
+    setSignUpForm((prev) => ({ ...prev, [name]: value })) 
+    
+    if (value.length > 0 && value.length < 8) {
+      setAuthMessage((message) => ({
+        ...message,
+        idError: "ID는 8글자 이상으로 작성해야 합니다.",
+      }));
+    } else {
+      setAuthMessage((message) => ({ ...message, idError: "" }));
+    }
+  }
+
   // 비밀번호 입력 시 동적 유효성 검사 (8자 미만이면 에러 표시)
   const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
+    const { name, value } = e.target;
+    setSignUpForm((prev) => ({ ...prev, [name]: value })) 
+    
     if (value.length > 0 && value.length < 8) {
       setAuthMessage((message) => ({
         ...message,
@@ -30,10 +48,10 @@ const Signup = () => {
   };
 
   const handleNicknameChange = (e) => {
-    const value = e.target.value;
-    setNickname(value);
+    const { name, value } = e.target;
+    setSignUpForm((prev) => ({ ...prev, [name]: value })) 
 
-    if (!nickname.trim()) {
+    if (!signUpForm.nickname.trim()) {
       setAuthMessage((message) => ({
         ...message,
         nicknameError: "닉네임에는 공백을 사용할 수 없습니다.",
@@ -48,7 +66,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const { message, success } = await register({ nickname, id, password });
+      const { message, success } = await register(signUpForm);
       // 회원가입 API 호출 또는 추가 로직 처리
       if (success) {
         alert(message);
@@ -66,7 +84,7 @@ const Signup = () => {
         id="signup_nickrname"
         name="nickname"
         placeholder="닉네임을 입력하세요"
-        value={nickname}
+        value={signUpForm.nickname}
         onChange={handleNicknameChange}
         error={authMessage.nicknameError}
       />
@@ -76,8 +94,8 @@ const Signup = () => {
         id="signup_id"
         name="id"
         placeholder="이메일을 입력하세요"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
+        value={signUpForm.id}
+        onChange={handleIdChange}
         error={authMessage.idError}
       />
       <InputField
@@ -86,7 +104,7 @@ const Signup = () => {
         id="signup_password"
         name="password"
         placeholder="비밀번호를 입력하세요"
-        value={password}
+        value={signUpForm.password}
         onChange={handlePasswordChange}
         error={authMessage.passwordError}
       />

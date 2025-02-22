@@ -7,7 +7,6 @@ import useAuthStore from "../zustand/authStore";
 import { useLogin } from "../utils/hooks/useLogin";
 
 const Login = () => {
-
   const { loginForm, loginErrorMessage, handleAuthvalidation } = useLogin();
   const { signin } = useAuthStore((state) => state);
   const navigate = useNavigate();
@@ -20,12 +19,12 @@ const Login = () => {
         nickname,
         accessToken: token,
         success: isAuthnticated,
-        userId
+        userId,
       } = await login(loginForm);
       if (isAuthnticated) {
         alert("로그인 성공");
         navigate("/");
-        signin({ token, isAuthnticated, nickname,userId });
+        signin({ token, isAuthnticated, nickname, userId });
       }
     } catch (error) {
       console.error(`${error.name}: ${error.message}`);
@@ -57,9 +56,10 @@ const Login = () => {
       <Button type="submit" isDisabled={loginErrorMessage}>
         Login
       </Button>
-      <div>
-        <Link to="/signup">아이디가 없으신가요? 회원가입하러가기</Link>
-      </div>
+        <p className="text-center text-purple-">아이디가 없으신가요?
+        <Link to="/signup" className="font-bold hover:text-blue-400"> 회원가입</Link>
+        </p>
+
     </InputForm>
   );
 };

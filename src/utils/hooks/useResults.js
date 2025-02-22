@@ -34,5 +34,5 @@ export const useResults = () => {
     },
   })
 
-  return {getTestResults, addTestResult, updateTestResult, removeTestResult}
+  return { getTestResults, addTestResult, updateTestResult, removeTestResult }
 }

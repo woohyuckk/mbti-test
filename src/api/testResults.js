@@ -7,7 +7,7 @@ export const testResultsApi = axios.create({
   baseURL: TEST_RESULTS_URL,
 })
 
-export const getTestResults = async () => {
+export const fetchTestResults = async () => {
   try {
     const response = await testResultsApi.get('/testResults');
     return response.data
@@ -28,7 +28,8 @@ export const createTestResult = async (result) => {
 //  visibility = { "visibility : false or true "}
 export const updateTestResultVisibility = async (id, visibility) => {
   try {
-    const response = await testResultsApi.patch(`/testResults/${id}`, { visibility })
+    
+    const response = await testResultsApi.patch(`/testResults/${id}`, {visibility : !visibility})
     return response.data;
   } catch (error) {
     console.error(error)
@@ -39,6 +40,7 @@ export const updateTestResultVisibility = async (id, visibility) => {
 export const deleteTestResult = async (id) => {
   try {
     const response = await testResultsApi.delete(`/testResults/${id}`);
+    console.log(response)
     return response.data
   } catch (error) {
     console.error(error)

@@ -28,7 +28,7 @@ const TestPage = () => {
       mbtiDescriptions: mbtiDescriptions[mbtiResult],
       visibility: true,
       date: FormattingDate(new Date()),
-      userId,
+      user : userId,
     };
     try {
       await addTestResult.mutateAsync(newTestResult);

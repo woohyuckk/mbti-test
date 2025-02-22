@@ -1,18 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { getTestResults } from "../api/testResults";
 import ResultCard from "../components/results/ResultCard";
+import { useResults } from "../hooks/useResults";
 
 const Results = () => {
-  const {
-    data: testResults,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["testResults"],
-    queryFn: getTestResults,
-  });
+  const { getTestResults } = useResults();
 
-  console.log(testResults);
+  const { data: testResults, error, isLoading } = getTestResults;
+
 
   if (error) {
     return <p>Error</p>;

@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { createTestResult, deleteTestResult, fetchTestResults, updateTestResultVisibility } from "../api/testResults";
+import { createTestResult, deleteTestResult, fetchTestResults, updateTestResultVisibility } from "../../api/testResults";
 
 
 export const useResults = () => {

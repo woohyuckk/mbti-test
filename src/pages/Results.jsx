@@ -1,5 +1,5 @@
 import ResultCard from "../components/results/ResultCard";
-import { useResults } from "../hooks/useResults";
+import { useResults } from "../utils/hooks/useResults";
 
 const Results = () => {
   const { getTestResults } = useResults();

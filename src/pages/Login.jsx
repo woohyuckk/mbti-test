@@ -9,8 +9,8 @@ import useAuthStore from "../zustand/authStore";
 const Login = () => {
   const [loginData, setLoginData] = useState({ id: "", password: "" });
   const [loginErrorMessage, setLoginErrorMessage] = useState({
-    idError: "",
-    passwordError: "",
+    id: "",
+    password: "",
   });
 
   const { signin } = useAuthStore((state) => state);

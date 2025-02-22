@@ -9,7 +9,6 @@ const Signup = () => {
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const { message, success } = await register(signUpForm);
       // 회원가입 API 호출 또는 추가 로직 처리

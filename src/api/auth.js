@@ -39,6 +39,7 @@ export const register = async (userData) => {
 }
 
 export const login = async (userData) => {
+  console.log(userData)
   const response = await authapi.post('/login', userData);
   return response.data;
 };

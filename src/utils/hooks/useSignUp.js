@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { getValidationMessage, } from "../signup/Validation";
 
-
-
 export const useSignUp = () => {
 
   const [signUpForm, setSignUpForm] = useState({

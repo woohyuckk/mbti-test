@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { getValidationMessage } from "../signup/Validation";
 
-
-
 export const useLogin = () => {
   const [loginForm, setLoginForm] = useState({ id: "", password: "" });
   const [loginErrorMessage, setLoginErrorMessage] = useState({

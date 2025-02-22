@@ -1,6 +1,5 @@
 import { AUTH_VALID_LENGTH } from "../../constants/signUp";
 
-
 export const messageValidId = (id) => {
   if (/\s/.test(id)) return "ID에는 공백을 포함할 수 없습니다.";
   if (id.length < AUTH_VALID_LENGTH.MIN_ID_LENGTH || AUTH_VALID_LENGTH.MAX_ID_LENGTH > 24) return "ID는 4자 이상 24자 이하여야 합니다.";
@@ -19,7 +18,7 @@ export const messageValidPassword = (password) => {
   return "";
 };
 
-export const getValidationMessage = (name,value) => {
+export const getValidationMessage = (name, value) => {
   switch (name) {
     case "id":
       return messageValidId(value);
@@ -27,7 +26,7 @@ export const getValidationMessage = (name,value) => {
       return messageValidPassword(value);
     case "nickname":
       return messageValidNickname(value);
-    default: 
+    default:
       return null
   }
 }

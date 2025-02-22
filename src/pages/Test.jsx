@@ -12,7 +12,6 @@ const TestPage = () => {
   const [result, setResult] = useState(null);
   const { userId, nickname } = useAuthStore((state) => state);
   const queryClient = useQueryClient();
-  
 
   const addTestResult = useMutation({
     mutationFn: (newTestResult) => createTestResult(newTestResult),
@@ -20,24 +19,23 @@ const TestPage = () => {
       queryClient.invalidateQueries(["testResults"]);
     },
   });
-  
+
   const handleTestSubmit = async (answers) => {
-    
     const mbtiResult = calculateMBTI(answers);
     const newTestResult = {
       nickname,
       result: mbtiResult,
+      mbtiDescriptions: mbtiDescriptions[mbtiResult],
       visibility: true,
       date: FormattingDate(new Date()),
-      userId
-    }
+      userId,
+    };
     try {
-
-      await addTestResult.mutateAsync(newTestResult)
+      await addTestResult.mutateAsync(newTestResult);
     } catch (error) {
       console.error(error);
     }
-    setResult(mbtiResult)
+    setResult(mbtiResult);
 
     /* Test 결과는 mbtiResult 라는 변수에 저장이 됩니다. 이 데이터를 어떻게 API 를 이용해 처리 할 지 고민해주세요. */
   };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import useAuthStore from "../zustand/authStore";
 
 // instance
 const API_URL = 'https://www.nbcamp-react-auth.link';
@@ -7,19 +8,15 @@ const authapi = axios.create({
   baseURL: API_URL,
 })
 
-// interceptors 필요시 해제  
-// authapi.interceptors.request.use(
-//   function (config) {
-//     // 요청을 보내기 전 수행
-//     console.log("인터셉트 요청 성공!");
-//     return config;
-//   },
-//   function (error) {
-//     // 오류 요청을 보내기 전 수행
-//     console.log("인터셉트 요청 오류!");
-//     return Promise.reject(error);
-//   },
-// );
+//  토큰 추가 
+authapi.interceptors.request.use(
+  (config) => {
+    const token = useAuthStore.getState().token
+    
+    config.headers.Authorization = `Bearer ${token}`
+    return config;
+  }
+);
 
 // authapi.interceptors.response.use(
 //   function (response) {

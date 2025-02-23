@@ -5,7 +5,10 @@ import useAuthStore from "../../zustand/authStore";
 
 const Header = () => {
   // 예시로 로그인 상태(true)로 설정, 실제 로직에 맞게 변경하세요.
-  const { user: {isAuthnticated}, logout } = useAuthStore((state) => state);
+  const {
+    user: { isAuthnticated },
+    logout,
+  } = useAuthStore((state) => state);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {

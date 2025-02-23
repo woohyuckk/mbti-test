@@ -3,10 +3,11 @@ import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
 import { register } from "../api/auth";
 import { useSignUp } from "../utils/hooks/useSignUp";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { signUpForm, authMessage, handleAuthvalidation } = useSignUp();
-
+  const navigate = useNavigate();
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -14,6 +15,7 @@ const Signup = () => {
       // 회원가입 API 호출 또는 추가 로직 처리
       if (success) {
         alert(message);
+        navigate('/')
       }
     } catch (error) {
       console.error(`${error.name}: ${error.message}`);

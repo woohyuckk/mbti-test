@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getValidationMessage, } from "../signup/Validation";
+import { getValidationMessage, } from "../auth/Validation";
 
 export const useSignUp = () => {
 

@@ -40,7 +40,6 @@ export const updateTestResultVisibility = async (id, visibility) => {
 export const deleteTestResult = async (id) => {
   try {
     const response = await testResultsApi.delete(`/testResults/${id}`);
-    console.log(response)
     return response.data
   } catch (error) {
     console.error(error)

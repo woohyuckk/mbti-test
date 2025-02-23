@@ -4,16 +4,17 @@ import useAuthStore from "../zustand/authStore";
 // instance
 const API_URL = 'https://www.nbcamp-react-auth.link';
 
-const authapi = axios.create({
+export const authapi = axios.create({
   baseURL: API_URL,
 })
 
 //  토큰 추가 
 authapi.interceptors.request.use(
   (config) => {
-    const token = useAuthStore.getState().token
-    
-    config.headers.Authorization = `Bearer ${token}`
+    const token = useAuthStore.getState().user.token
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
     return config;
   }
 );
@@ -40,16 +41,18 @@ export const login = async (userData) => {
   return response.data;
 };
 
-export const getUserProfile = async (token) => {
-  const response = await authapi.get('/user', {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  })
+export const getUserProfile = async () => {
+  const response = await authapi.get('/user')
   return response.data
 };
 
 
-// export const updateProfile = async (formData) => {
-
-// };
+export const updateProfile = async (formData) => {
+  const response = await authapi.patch('/profile', formData, {
+    headers: {
+      "Content-Type" : "multipart/form-data",
+    }
+    
+  })
+  return response.data
+};

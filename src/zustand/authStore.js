@@ -18,10 +18,8 @@ const useAuthStore = create(persist(immer((set) => {
       set(
         (state) => {
           state.user = userInfo 
-          console.log(state.user)
         }
       )
-      console.log(userInfo, )
     }
     ,
     logout: () => {

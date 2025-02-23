@@ -2,12 +2,15 @@ import  { useState } from 'react'
 import InputField from '../common/Inputfiled'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateProfile } from '../../api/auth'
+import useAuthStore from '../../zustand/authStore'
 
 const UpdateProfile = () => {
   const [formData, setFormData] = useState({
     nickname: "",
     avartar: "",
   })
+
+  const {setUserInfo} = useAuthStore((state)=>state)
   
   const queryClient = useQueryClient();
 
@@ -21,7 +24,6 @@ const UpdateProfile = () => {
   const onChangeHandler = async (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }))
-    
   }
   
 
@@ -31,8 +33,8 @@ const UpdateProfile = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
     updateProfileNickname(formData)
+    setUserInfo(formData)
   }
 
   return (

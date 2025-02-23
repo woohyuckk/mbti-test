@@ -8,7 +8,7 @@ import { useLogin } from "../utils/hooks/useLogin";
 
 const Login = () => {
   const { loginForm, loginErrorMessage, handleAuthvalidation } = useLogin();
-  const { signin } = useAuthStore((state) => state);
+  const { setUserInfo } = useAuthStore((state) => state);
   const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
@@ -25,7 +25,7 @@ const Login = () => {
       if (isAuthnticated) {
         alert("로그인 성공");
         navigate("/");
-        signin({ token, isAuthnticated, nickname, userId,avatar });
+        setUserInfo({ token, isAuthnticated, nickname, userId,avatar });
       }
     } catch (error) {
       console.error(`${error.name}: ${error.message}`);

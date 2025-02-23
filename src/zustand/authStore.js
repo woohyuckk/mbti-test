@@ -14,10 +14,10 @@ const initialValue = {
 const useAuthStore = create(persist(immer((set) => {
   return {
     user : initialValue,
-    signin: (userInfo) => {
+    setUserInfo: (userInfo) => {
       set(
         (state) => {
-          state.user = userInfo 
+          state.user = { ...state.user, ...userInfo }
         }
       )
     }

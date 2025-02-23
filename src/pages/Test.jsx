@@ -10,7 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 const TestPage = () => {
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
-  const { userId, nickname } = useAuthStore((state) => state);
+  const { user: { userId, nickname } } = useAuthStore((state) => state);
   const queryClient = useQueryClient();
 
   const addTestResult = useMutation({

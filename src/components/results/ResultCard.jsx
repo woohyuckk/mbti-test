@@ -1,8 +1,13 @@
 import { useResults } from "../../utils/hooks/useResults";
+import useAuthStore from "../../zustand/authStore";
 
 const ResultCard = ({ result }) => {
   const { updateTestResult, removeTestResult } = useResults();
 
+  const { user: { userId } } = useAuthStore((state) => state)
+  const isSignInUser = result.user === userId ? true : false;
+  console.log(userId)
+  
   const toggleHide = (id, visibility) => {
     updateTestResult.mutate({ id, visibility });
   };
@@ -10,6 +15,7 @@ const ResultCard = ({ result }) => {
   const deleteTestResultHandler = (id) => {
     removeTestResult.mutate({ id })
   }
+
   return (
     <div
       className={`p-4 border-2 border-solid border-red-300 rounded shadow-md transition-colors duration-300 max-w-4xl w-full mx-auto
@@ -22,15 +28,15 @@ const ResultCard = ({ result }) => {
       <div className="flex justify-between">
         <p>{result.nickname}</p>
         <div>
-          <button
+          {isSignInUser && <button
             onClick={() => toggleHide(result.id, result.visibility)}
             className="mr-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
           >
-            {result.visibility ? "비공개" :"공개"}
-          </button>
-          <button onClick={()=>deleteTestResultHandler(result.id)} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none">
+            {result.visibility ? "비공개" : "공개"}
+          </button>}
+          {isSignInUser && <button onClick={() => deleteTestResultHandler(result.id)} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none">
             Delete
-          </button>
+          </button>}
         </div>
       </div>
       <h2 className="mb-1 font-bold text-3xl">{result.result}</h2>

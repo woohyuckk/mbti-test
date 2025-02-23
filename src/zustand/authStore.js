@@ -1,31 +1,38 @@
 import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { createJSONStorage, persist } from "zustand/middleware"
+import { immer } from "zustand/middleware/immer"
 
 
-const useAuthStore = create(persist((set) => {
+const initialValue = {
+  token: "",
+  isAuthnticated: false,
+  nickname: "",
+  userId: "",
+  avatar: "",
+}
+
+const useAuthStore = create(persist(immer((set) => {
   return {
-    token: "",
-    isAuthnticated: false,
-    nickname: "",
-    userId: "",
-    signin: (payload) => {
-      set({
-        token: payload.token,
-        isAuthnticated: payload.isAuthnticated,
-        nickname: payload.nickname,
-        userId: payload.userId
-      }
+    user : initialValue,
+    signin: (userInfo) => {
+      set(
+        (state) => {
+          state.user = userInfo 
+          console.log(state.user)
+        }
       )
-    },
+      console.log(userInfo, )
+    }
+    ,
     logout: () => {
-      set({
-        token: "",
-        isAuthnticated: false
+      set((state)=>{
+        state.user = initialValue
       })
     }
   }
-}, {
-  name: "user"
+}), {
+  name: "user",
+  storage: createJSONStorage(()=>localStorage)
 }))
 
 export default useAuthStore

@@ -2,10 +2,9 @@ import axios from "axios";
 import useAuthStore from "../store/authStore";
 
 // instance
-const API_URL = 'https://www.nbcamp-react-auth.link';
 
 export const authapi = axios.create({
-  baseURL: API_URL,
+  baseURL: import.meta.env.VITE_AUTH_URL,
 })
 
 //  토큰 추가 

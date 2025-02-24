@@ -1,10 +1,9 @@
 import axios from "axios"
 
 // instance
-const TEST_RESULTS_URL = "https://intermediate-unruly-paneer.glitch.me/"
 
 export const testResultsApi = axios.create({
-  baseURL: TEST_RESULTS_URL,
+  baseURL: import.meta.env.VITE_TEST_RESULTS_URL,
 })
 
 export const fetchTestResults = async () => {

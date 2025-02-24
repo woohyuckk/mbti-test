@@ -11,7 +11,7 @@ const initialValue = {
   avatar: "",
 }
 
-const useAuthStore = create(persist(immer((set) => {
+const useAuthStore = create(persist(immer((set,get) => {
   return {
     user : initialValue,
     setUserInfo: (userInfo) => {
@@ -26,6 +26,10 @@ const useAuthStore = create(persist(immer((set) => {
       set((state)=>{
         state.user = initialValue
       })
+    },
+    isValidToken: () => {
+      const token = get().user.token;
+      const tokenJson = parseJwt(token);
     }
   }
 }), {

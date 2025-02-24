@@ -18,14 +18,14 @@ const Login = () => {
       const {
         nickname,
         accessToken: token,
-        success: isAuthnticated,
+        success,
         userId,
         avatar,
       } = await login(loginForm);
-      if (isAuthnticated) {
+      if (success) {
         alert("로그인 성공");
         navigate("/");
-        setUserInfo({ token, isAuthnticated, nickname, userId, avatar });
+        setUserInfo({ token, nickname, userId, avatar });
       }
     } catch (error) {
       console.error(`${error.name}: ${error.message}`);

@@ -2,14 +2,14 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 
 const ProtectedRoute = () => {
-  const { user: { isAuthnticated } } = useAuthStore((state) => state);
+  const isAuth = useAuthStore().isValidToken()
   const { pathname } = useLocation();
  
-  if (isAuthnticated) {
+  if (isAuth) {
     return <Outlet />;
   }
 
-  if (!isAuthnticated) {
+  if (!isAuth) {
     return (
       <Navigate to="/login" replace state={{ redirectedFrom: pathname }} />
     );

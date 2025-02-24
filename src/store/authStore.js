@@ -6,7 +6,6 @@ import { decodedJwtToken } from "../utils/auth/Validation"
 
 const initialValue = {
   token: "",
-  isAuthnticated: false,
   nickname: "",
   userId: "",
   avatar: "",

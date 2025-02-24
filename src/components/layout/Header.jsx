@@ -5,10 +5,8 @@ import useAuthStore from "../../store/authStore";
 
 const Header = () => {
   // 예시로 로그인 상태(true)로 설정, 실제 로직에 맞게 변경하세요.
-  const {
-    user: { isAuthnticated },
-    logout,
-  } = useAuthStore((state) => state);
+  const { logout } = useAuthStore((state) => state);
+  const isAuth = useAuthStore().isValidToken();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -18,7 +16,7 @@ const Header = () => {
   const handleLogout = () => {
     // 실제 로그아웃 로직 (예: 토큰 삭제, 상태 갱신 등)
     logout();
-    localStorage.removeItem("user")
+    localStorage.removeItem("user");
   };
 
   return (
@@ -37,7 +35,7 @@ const Header = () => {
 
         {/* 우측: 데스크탑 네비게이션 */}
         <nav className="hidden items-center space-x-4 md:flex">
-          {isAuthnticated ? (
+          {isAuth ? (
             <>
               <Link
                 to="/profile"
@@ -97,7 +95,7 @@ const Header = () => {
       {isMobileMenuOpen && (
         <nav className="border-t border-gray-200 bg-white md:hidden">
           <div className="space-y-1 px-2 py-3">
-            {isAuthnticated ? (
+            {isAuth ? (
               <>
                 <Link
                   to="/profile"

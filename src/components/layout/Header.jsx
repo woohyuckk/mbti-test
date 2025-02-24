@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineMoreVert } from "react-icons/md";
-import useAuthStore from "../../zustand/authStore";
+import useAuthStore from "../../store/authStore";
 
 const Header = () => {
   // 예시로 로그인 상태(true)로 설정, 실제 로직에 맞게 변경하세요.
@@ -28,7 +28,7 @@ const Header = () => {
         <div className="flex-shrink-0">
           <Link
             to="/"
-            className="text-xl font-bold text-gray-900 transition-colors duration-200 hover:text-indigo-600 hover:scale-150 "
+            className="text-xl font-bold text-gray-900 transition-colors duration-200 hover:scale-150 hover:text-indigo-600"
           >
             홈
           </Link>
@@ -40,25 +40,25 @@ const Header = () => {
             <>
               <Link
                 to="/profile"
-                className="text-gray-700 font-bold transition-colors duration-200 hover:text-indigo-600 hover:scale-125"
+                className="font-bold text-gray-700 transition-colors duration-200 hover:scale-125 hover:text-indigo-600"
               >
                 프로필
               </Link>
               <Link
                 to="/test"
-                className="text-gray-700 font-bold transition-colors duration-200 hover:text-indigo-600 hover:scale-125"
+                className="font-bold text-gray-700 transition-colors duration-200 hover:scale-125 hover:text-indigo-600"
               >
                 테스트
               </Link>
               <Link
                 to="/results"
-                className="text-gray-700 font-bold transition-colors duration-200 hover:text-indigo-600 hover:scale-125"
+                className="font-bold text-gray-700 transition-colors duration-200 hover:scale-125 hover:text-indigo-600"
               >
                 결과보기
               </Link>
               <button
                 onClick={handleLogout}
-                className="text-gray-700 font-bold transition-colors duration-200 hover:text-indigo-600 hover:scale-125"
+                className="font-bold text-gray-700 transition-colors duration-200 hover:scale-125 hover:text-indigo-600"
               >
                 로그아웃
               </button>
@@ -67,13 +67,13 @@ const Header = () => {
             <>
               <Link
                 to="/login"
-                className="text-gray-700 transition-colors duration-200 hover:text-indigo-600 hover:scale-125"
+                className="text-gray-700 transition-colors duration-200 hover:scale-125 hover:text-indigo-600"
               >
                 로그인
               </Link>
               <Link
                 to="/signup"
-                className="text-gray-700 transition-colors duration-200 hover:text-indigo-600 hover:scale-125"
+                className="text-gray-700 transition-colors duration-200 hover:scale-125 hover:text-indigo-600"
               >
                 회원가입
               </Link>

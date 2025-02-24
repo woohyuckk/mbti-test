@@ -1,5 +1,5 @@
-import { useResults } from "../../utils/hooks/useResults";
-import useAuthStore from "../../zustand/authStore";
+import useAuthStore from "../../store/authStore";
+import { useResults } from "../../utils/hooks/useResults.api";
 
 const ResultCard = ({ result }) => {
   const { updateTestResult, removeTestResult } = useResults();

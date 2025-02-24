@@ -10,7 +10,6 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const Router = () => {
 
-
   return (
     <BrowserRouter>
       <Routes>

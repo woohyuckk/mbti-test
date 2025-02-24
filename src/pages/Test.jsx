@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
 import TestForm from "../components/test/TestForm";
-import useAuthStore from "../zustand/authStore";
 import { FormattingDate } from "../utils/dateFormat";
 import { createTestResult } from "../api/testResults";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useAuthStore from "../store/authStore";
 
 const TestPage = () => {
   const navigate = useNavigate();

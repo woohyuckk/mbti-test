@@ -1,26 +1,11 @@
 import InputForm from "../components/common/InputForm";
 import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
-import { register } from "../api/auth";
 import { useSignUp } from "../utils/hooks/useSignUp";
-import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const { signUpForm, authMessage, handleAuthvalidation } = useSignUp();
-  const navigate = useNavigate();
-  const handleSignupSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { message, success } = await register(signUpForm);
-      // 회원가입 API 호출 또는 추가 로직 처리
-      if (success) {
-        alert(message);
-        navigate('/')
-      }
-    } catch (error) {
-      console.error(`${error.name}: ${error.message}`);
-    }
-  };
+  const { signUpForm, authMessage, handleAuthvalidation, handleSignupSubmit } = useSignUp();
+  
 
   return (
     <InputForm title="회원가입" onSubmit={handleSignupSubmit}>
@@ -55,7 +40,7 @@ const Signup = () => {
         error={authMessage.password}
       />
       <Button type="submit" isDisabled={authMessage}>
-        회원가입 완료
+        회원가입
       </Button>
     </InputForm>
   );

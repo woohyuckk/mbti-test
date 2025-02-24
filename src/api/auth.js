@@ -1,5 +1,5 @@
 import axios from "axios";
-import useAuthStore from "../zustand/authStore";
+import useAuthStore from "../store/authStore";
 
 // instance
 const API_URL = 'https://www.nbcamp-react-auth.link';
@@ -50,9 +50,9 @@ export const getUserProfile = async () => {
 export const updateProfile = async (formData) => {
   const response = await authapi.patch('/profile', formData, {
     headers: {
-      "Content-Type" : "multipart/form-data",
+      "Content-Type": "multipart/form-data",
     }
-    
+
   })
   return response.data
 };

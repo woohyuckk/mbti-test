@@ -3,7 +3,7 @@ import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
-import useAuthStore from "../zustand/authStore";
+import useAuthStore from "../store/authStore";
 import { useLogin } from "../utils/hooks/useLogin";
 
 const Login = () => {
@@ -20,12 +20,12 @@ const Login = () => {
         accessToken: token,
         success: isAuthnticated,
         userId,
-        avatar
+        avatar,
       } = await login(loginForm);
       if (isAuthnticated) {
         alert("로그인 성공");
         navigate("/");
-        setUserInfo({ token, isAuthnticated, nickname, userId,avatar });
+        setUserInfo({ token, isAuthnticated, nickname, userId, avatar });
       }
     } catch (error) {
       console.error(`${error.name}: ${error.message}`);
@@ -57,10 +57,13 @@ const Login = () => {
       <Button type="submit" isDisabled={loginErrorMessage}>
         Login
       </Button>
-        <p className="text-center text-purple-">아이디가 없으신가요?
-        <Link to="/signup" className="font-bold hover:text-blue-400"> 회원가입</Link>
-        </p>
-
+      <p className="text-purple- text-center">
+        아이디가 없으신가요?
+        <Link to="/signup" className="font-bold hover:text-blue-400">
+          {" "}
+          회원가입
+        </Link>
+      </p>
     </InputForm>
   );
 };

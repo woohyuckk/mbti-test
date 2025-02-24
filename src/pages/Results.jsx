@@ -1,5 +1,6 @@
+import Loading from "../components/layout/Loading";
 import ResultCard from "../components/results/ResultCard";
-import { useResults } from "../utils/hooks/useResults";
+import { useResults } from "../utils/hooks/useResults.api";
 
 const Results = () => {
   const { getTestResults } = useResults();
@@ -10,7 +11,7 @@ const Results = () => {
   if (error) {
     return <p>Error</p>;
   }
-  if (isLoading) return <p>로딩중</p>;
+  if (isLoading) return <Loading/>
 
   return (
     <div className="flex flex-col gap-4">

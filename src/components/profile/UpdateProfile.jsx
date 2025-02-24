@@ -2,7 +2,8 @@ import  { useState } from 'react'
 import InputField from '../common/Inputfiled'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateProfile } from '../../api/auth'
-import useAuthStore from '../../zustand/authStore'
+import useAuthStore from '../../store/authStore'
+import Button from '../common/Button'
 
 const UpdateProfile = () => {
   const [formData, setFormData] = useState({
@@ -26,11 +27,6 @@ const UpdateProfile = () => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
   
-
-
-
-  
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
     updateProfileNickname(formData)
@@ -46,7 +42,7 @@ const UpdateProfile = () => {
         value={formData.nickname}
         onChange={onChangeHandler}
       />
-      <button type="submit"> 변경</button>
+      <Button type='submit'>변경</Button>
     </form>
   )
 }

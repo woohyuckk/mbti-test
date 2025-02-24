@@ -1,6 +1,7 @@
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
 import { immer } from "zustand/middleware/immer"
+import { decodedJwtToken } from "../utils/auth/Validation"
 
 
 const initialValue = {
@@ -29,7 +30,8 @@ const useAuthStore = create(persist(immer((set,get) => {
     },
     isValidToken: () => {
       const token = get().user.token;
-      const tokenJson = parseJwt(token);
+      const isValidJwt = decodedJwtToken(token)
+      return isValidJwt 
     }
   }
 }), {

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { getValidationMessage, } from "../auth/Validation";
 import { useSignUpMutate } from "./useAuth.api";
+import { useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
-
+  const navigate = useNavigate();
   const { mutate: signUpMutate } = useSignUpMutate();
   const [signUpForm, setSignUpForm] = useState({
     id: "",
@@ -25,7 +26,15 @@ export const useSignUp = () => {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    signUpMutate(signUpForm)
+    signUpMutate(signUpForm, {    onSuccess: () => {
+      alert("회원가입 완료");
+      navigate('/login')
+    },
+    onError: (e) => {
+      alert(e.message);
+    }
+      
+    })
   };
 
   return { signUpForm, authMessage, handleAuthvalidation,handleSignupSubmit }

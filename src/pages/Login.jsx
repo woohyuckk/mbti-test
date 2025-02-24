@@ -2,34 +2,25 @@ import InputForm from "../components/common/InputForm";
 import InputField from "../components/common/Inputfiled";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../api/auth";
-import useAuthStore from "../store/authStore";
 import { useLogin } from "../utils/hooks/useLogin";
+import { useLoginMutate } from "../utils/hooks/useAuth.api";
 
 const Login = () => {
   const { loginForm, loginErrorMessage, handleAuthvalidation } = useLogin();
-  const { setUserInfo } = useAuthStore((state) => state);
   const navigate = useNavigate();
-
+  const { mutate: loginMutate } = useLoginMutate();
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const {
-        nickname,
-        accessToken: token,
-        success,
-        userId,
-        avatar,
-      } = await login(loginForm);
-      if (success) {
+    loginMutate(loginForm, {
+      onSuccess: () => {
         alert("로그인 성공");
         navigate("/");
-        setUserInfo({ token, nickname, userId, avatar });
+      },
+      onError: (error) => {
+        console.error(`${error.name}: ${error.message}`);
       }
-    } catch (error) {
-      console.error(`${error.name}: ${error.message}`);
-    }
+    })
+    
   };
 
   return (

@@ -1,20 +1,36 @@
-import { useMutation } from "@tanstack/react-query";
-import { register } from "../../api/auth";
-import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getUserProfile, login, register } from "../../api/auth";
+import useAuthStore from "../../store/authStore";
 
 
 
 
 export function useSignUpMutate() {
-  const navigate = useNavigate();
+  
   return useMutation({
-    mutationFn: async (signUpForm) => await register(signUpForm),
-    onSuccess: () => {
-      alert("회원가입 완료");
-      navigate('/login')
+    mutationFn: async (signUpForm) => await register(signUpForm)
+  })
+}
+
+export function useLoginMutate() {
+  const setUserInfo = useAuthStore().setUserInfo
+
+  return useMutation({
+    mutationFn: async (loginForm) => {
+      const response = await login(loginForm)
+      return response
     },
-    onError: (e) => {
-      alert(e.message);
+    onSuccess: (response) => {
+      const {accessToken:token} = response
+      setUserInfo({...response, token})
     }
+  })
+
+}
+
+export function useProfileQuery() {
+  return useQuery({
+    queryKey: ["myInfo"],
+    queryFn:getUserProfile
   })
 }

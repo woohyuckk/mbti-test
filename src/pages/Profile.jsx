@@ -1,12 +1,8 @@
-import { useQuery } from "@tanstack/react-query"
-import { getUserProfile } from "../api/auth"
 import UpdateProfile from "../components/profile/UpdateProfile"
+import { useProfileQuery } from "../utils/hooks/useAuth.api"
 
 const Profile = () => {
-  const { data: profile } = useQuery({
-    queryKey: ["myInfo"],
-    queryFn:getUserProfile
-  })
+  const { data: profile } = useProfileQuery();
 
   return (
     <div className="bg-white max-w-md min-w-[300px] mx-auto p-8 shadow-lg rounded-lg space-y-4">

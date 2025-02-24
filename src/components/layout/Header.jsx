@@ -79,25 +79,25 @@ const Header = () => {
               <>
                 <Link
                   to="/profile"
-                  className="hover:text-hover_color block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50"
+                  className="hover:text-hover_color block rounded-md px-3 py-2 text-base font-bold text-gray-700 transition-colors duration-200 hover:bg-gray-50"
                 >
                   프로필
                 </Link>
                 <Link
                   to="/test"
-                  className="hover:text-hover_color block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50"
+                  className="hover:text-hover_color block rounded-md px-3 py-2 text-base font-bold text-gray-700 transition-colors duration-200 hover:bg-gray-50"
                 >
                   테스트
                 </Link>
                 <Link
                   to="/results"
-                  className="hover:text-hover_color block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50"
+                  className="hover:text-hover_color block rounded-md px-3 py-2 text-base font-bold text-gray-700 transition-colors duration-200 hover:bg-gray-50"
                 >
                   결과보기
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="hover:text-hover_color block w-full rounded-md px-3 py-2 text-left text-base font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50"
+                  className="hover:text-hover_color block w-full rounded-md px-3 py-2 text-left text-base font-bold text-gray-700 transition-colors duration-200 hover:bg-gray-50"
                 >
                   로그아웃
                 </button>

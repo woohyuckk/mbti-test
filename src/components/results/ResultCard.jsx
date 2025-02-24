@@ -26,7 +26,7 @@ const ResultCard = ({ result }) => {
             : "bg-gray-200 text-gray-500"
         }`}
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between border-b border-solid border-secondary p-2 ">
         <p>{result.nickname}</p>
         <div>
           {isSignInUser && (
@@ -47,7 +47,7 @@ const ResultCard = ({ result }) => {
           )}
         </div>
       </div>
-      <h2 className="mb-1 font-bold text-3xl">{result.result}</h2>
+      <h2 className="mb-2 font-bold text-3xl text-tertiary ">{result.result}</h2>
       <p className="mb-2">{result.mbtiDescriptions}</p>
       <span className="text-sm text-gray-600">{result.date}</span>
     </div>

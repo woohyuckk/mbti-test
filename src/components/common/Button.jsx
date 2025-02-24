@@ -6,7 +6,7 @@ const Button = ({ type = "button", onClick, isDisabled, children }) => {
       type={type}
       onClick={onClick}
       disabled={!!isDisabled?.password || !!isDisabled?.id}
-      className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full mb-4 inline-block bg-primary text-white font-bold py-2 rounded-md hover:bg-hover_color transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {children}
     </button>

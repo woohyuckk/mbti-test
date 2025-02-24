@@ -4,10 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#B7B1F2",
-        secondary: "#FDB7EA",
-        sub_color: "#FFDCCC",
-        text_primary: "#444",
+        primary: "#F7A8C4",
+        secondary: "#F37199",
+        tertiary: '#AC1754',
+        hover_color: "#E53888",
+      },
+      boxShadow: {
+        custom: '0 0 2px #444', 
       }
     },
   },

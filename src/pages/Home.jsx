@@ -4,7 +4,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex w-full flex-col items-center justify-center bg-gray-200">
+    <div className="flex w-full flex-col items-center justify-center shadow-custom rounded-xl text-red-900 bg-primary">
       <h3 className="my-6 text-5xl font-bold">무료 성격 테스트</h3>
       <p className="mb-8">
         자신의 성격 유형을 확인할 수 있도록 솔직하게 답변해주세요.

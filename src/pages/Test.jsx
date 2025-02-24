@@ -3,22 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
 import TestForm from "../components/test/TestForm";
 import { FormattingDate } from "../utils/dateFormat";
-import { createTestResult } from "../api/testResults";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useAuthStore from "../store/authStore";
+import { useResults } from "../utils/hooks/useResults.api";
 
 const TestPage = () => {
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
   const { user: { userId, nickname } } = useAuthStore((state) => state);
-  const queryClient = useQueryClient();
-
-  const addTestResult = useMutation({
-    mutationFn: (newTestResult) => createTestResult(newTestResult),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["testResults"]);
-    },
-  });
+  const { addTestResult } = useResults();
 
   const handleTestSubmit = async (answers) => {
     const mbtiResult = calculateMBTI(answers);

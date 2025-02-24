@@ -18,6 +18,7 @@ const Header = () => {
   const handleLogout = () => {
     // 실제 로그아웃 로직 (예: 토큰 삭제, 상태 갱신 등)
     logout();
+    localStorage.removeItem("user")
   };
 
   return (

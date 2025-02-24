@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { getValidationMessage, } from "../auth/Validation";
-import { useNavigate } from "react-router-dom";
-import { register } from "../../api/auth";
+import { useSignUpMutate } from "./useAuth.api";
 
 export const useSignUp = () => {
 
-  const navigate = useNavigate();
-
+  const { mutate: signUpMutate } = useSignUpMutate();
   const [signUpForm, setSignUpForm] = useState({
     id: "",
     password: "",
@@ -25,18 +23,9 @@ export const useSignUp = () => {
     setAuthMessage((message) => ({ ...message, [name]: getValidationMessage(name, value) }))
   }
 
-  const handleSignupSubmit = async (e) => {
+  const handleSignupSubmit = (e) => {
     e.preventDefault();
-    try {
-      const { message, success } = await register(signUpForm);
-      // 회원가입 API 호출 또는 추가 로직 처리
-      if (success) {
-        alert(message);
-        navigate('/login')
-      }
-    } catch (error) {
-      console.error(`${error.name}: ${error.message}`);
-    }
+    signUpMutate(signUpForm)
   };
 
   return { signUpForm, authMessage, handleAuthvalidation,handleSignupSubmit }

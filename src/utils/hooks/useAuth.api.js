@@ -3,10 +3,8 @@ import { getUserProfile, login, register } from "../../api/auth";
 import useAuthStore from "../../store/authStore";
 
 
-
-
 export function useSignUpMutate() {
-  
+
   return useMutation({
     mutationFn: async (signUpForm) => await register(signUpForm)
   })
@@ -21,16 +19,15 @@ export function useLoginMutate() {
       return response
     },
     onSuccess: (response) => {
-      const {accessToken:token} = response
-      setUserInfo({...response, token})
+      const { accessToken: token } = response
+      setUserInfo({ ...response, token })
     }
   })
-
 }
 
 export function useProfileQuery() {
   return useQuery({
     queryKey: ["myInfo"],
-    queryFn:getUserProfile
+    queryFn: getUserProfile
   })
 }

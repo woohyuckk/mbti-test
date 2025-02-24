@@ -18,9 +18,8 @@ const Login = () => {
       },
       onError: (error) => {
         console.error(`${error.name}: ${error.message}`);
-      }
-    })
-    
+      },
+    });
   };
 
   return (

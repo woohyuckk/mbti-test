@@ -36,7 +36,7 @@ export const register = async (userData) => {
 }
 
 export const login = async (userData) => {
-  const response = await authapi.post('/login', userData);
+  const response = await authapi.post('/login?expiresIn=5s', userData);
   return response.data;
 };
 

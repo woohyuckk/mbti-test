@@ -45,6 +45,7 @@ export const decodedJwtToken = (token) => {
     }
     // 현재 시간(초 단위)과 exp 값 비교
     const now = Math.floor(Date.now() / 1000);
+
     return now < payloadObj.exp;
   } catch (error) {
     console.error("토큰 디코딩 중 오류 발생:", error);

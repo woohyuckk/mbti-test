@@ -11,9 +11,9 @@ const initialValue = {
   avatar: "",
 }
 
-const useAuthStore = create(persist(immer((set,get) => {
+const useAuthStore = create(persist(immer((set, get) => {
   return {
-    user : initialValue,
+    user: initialValue,
     setUserInfo: (userInfo) => {
       set(
         (state) => {
@@ -23,19 +23,19 @@ const useAuthStore = create(persist(immer((set,get) => {
     }
     ,
     logout: () => {
-      set((state)=>{
+      set((state) => {
         state.user = initialValue
       })
     },
     isValidToken: () => {
       const token = get().user.token;
       const isValidJwt = decodedJwtToken(token)
-      return isValidJwt 
+      return isValidJwt
     }
   }
 }), {
   name: "user",
-  storage: createJSONStorage(()=>localStorage)
+  storage: createJSONStorage(() => localStorage)
 }))
 
 export default useAuthStore

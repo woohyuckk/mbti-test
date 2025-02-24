@@ -3,15 +3,16 @@ import { questions } from "../../data/question";
 
 const TestForm = ({ onSubmit }) => {
   const [answers, setAnswers] = useState(
-    Array(questions.length).fill({ type: "", answer: "" , answerType : ""}),
+    Array(questions.length).fill({ type: "", answer: "", answerType: "" }),
   );
 
   const handleChange = (index, answer) => {
     const newAnswers = [...answers];
     newAnswers[index] = {
-      type: questions[index].type, answer,
-      answerType: questions[index].options.indexOf(answer)
-     };
+      type: questions[index].type,
+      answer,
+      answerType: questions[index].options.indexOf(answer),
+    };
     setAnswers(newAnswers);
   };
 
@@ -21,15 +22,15 @@ const TestForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white rounded-lg">
+    <form onSubmit={handleSubmit} className="space-y-6 rounded-lg bg-white p-6">
       {questions.map((q, index) => (
         <div key={q.id} className="mb-6">
-          <p className="font-semibold text-lg mb-3">{q.question}</p>
+          <p className="mb-3 text-lg font-semibold">{q.question}</p>
           <div className="space-y-2">
             {q.options.map((option, i) => (
               <label
                 key={i}
-                className={`block p-3 border rounded-lg cursor-pointer transition-colors duration-300 ${
+                className={`block cursor-pointer rounded-lg border p-3 transition-colors duration-300 ${
                   answers[index]?.answer === option ? "bg-gray-100" : ""
                 } hover:bg-gray-100`}
               >
@@ -39,7 +40,7 @@ const TestForm = ({ onSubmit }) => {
                   value={option}
                   checked={answers[index]?.answer === option}
                   onChange={() => handleChange(index, option)}
-                  className="mr-2 text-primary-color"
+                  className="text-primary-color mr-2"
                 />
                 {option}
               </label>
@@ -49,7 +50,7 @@ const TestForm = ({ onSubmit }) => {
       ))}
       <button
         type="submit"
-        className="w-full bg-slate-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
+        className="hover:bg-primary-dark w-full rounded-lg bg-slate-600 py-3 font-semibold text-white transition duration-300 hover:text-[#FF5A5F]"
       >
         제출하기
       </button>

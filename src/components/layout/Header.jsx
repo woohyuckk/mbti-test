@@ -34,7 +34,7 @@ const Header = () => {
         </div>
 
         {/* 우측: 데스크탑 네비게이션 */}
-        <nav className="hidden items-center space-x-4 md:flex">
+        <nav  className="hidden items-center space-x-4 md:flex">
           {isAuth ? (
             <>
               <Link
@@ -93,7 +93,7 @@ const Header = () => {
 
       {/* 모바일 메뉴: 토글 상태에 따라 표시 */}
       {isMobileMenuOpen && (
-        <nav className="border-t border-gray-200 bg-white md:hidden">
+        <nav onClick={() => {setIsMobileMenuOpen(!isMobileMenuOpen) }} className="border-t border-gray-200 bg-white md:hidden">
           <div className="space-y-1 px-2 py-3">
             {isAuth ? (
               <>

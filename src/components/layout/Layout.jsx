@@ -1,14 +1,11 @@
-import { Outlet } from 'react-router-dom';
-import Header from './Header';
-import Main from './Main';
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+import Main from "./Main";
 
 const Layout = () => {
   return (
-    <div className='w-full flex flex-col h-screen '>
-      <Header>
-        <h1>My App</h1>
-
-      </Header>
+    <div className="flex h-screen w-full flex-col">
+      <Header/>
       <Main>
         <Outlet />
       </Main>

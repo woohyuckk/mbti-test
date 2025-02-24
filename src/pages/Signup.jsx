@@ -4,8 +4,8 @@ import Button from "../components/common/Button";
 import { useSignUp } from "../utils/hooks/useSignUp";
 
 const Signup = () => {
-  const { signUpForm, authMessage, handleAuthvalidation, handleSignupSubmit } = useSignUp();
-  
+  const { signUpForm, authMessage, handleAuthvalidation, handleSignupSubmit } =
+    useSignUp();
 
   return (
     <InputForm title="회원가입" onSubmit={handleSignupSubmit}>

@@ -12,7 +12,7 @@ const TestPage = () => {
   const {
     user: { userId, nickname },
   } = useAuthStore((state) => state);
-  const { addTestResult } = useResults();
+   const { addTestResult } = useResults();
 
   const handleTestSubmit = async (answers) => {
     const mbtiResult = calculateMBTI(answers);

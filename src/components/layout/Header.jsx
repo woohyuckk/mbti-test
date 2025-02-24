@@ -18,7 +18,7 @@ const Header = () => {
     logout();
     localStorage.removeItem("user");
   };
-
+  console.log("리렌더링 확인 Header")
   return (
     <header className="borde-b-<3> w-full border-gray-200 bg-primary text-text_primary shadow-sm">
       {/* 데스크탑  */}

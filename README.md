@@ -59,7 +59,7 @@
 
 
 ### 😡트러블 슈팅
-[삭제버튼을 누르면 모든 데이터가 삭제되는 문제](https://forevero3o.tistory.com/43)
+[삭제버튼을 누르면 모든 데이터가 삭제되는 문제](https://forevero3o.tistory.com/43)   
 [언제 터질지 모르는 엑세스토큰 만료](https://forevero3o.tistory.com/44)
 
 

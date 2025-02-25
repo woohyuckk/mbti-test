@@ -26,16 +26,17 @@ export const useSignUp = () => {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    signUpMutate(signUpForm, {    onSuccess: () => {
-      alert("회원가입 완료");
-      navigate('/login')
-    },
-    onError: (e) => {
-      alert(e.message);
-    }
-      
+    signUpMutate(signUpForm, {
+      onSuccess: () => {
+        alert("회원가입 완료");
+        navigate('/login')
+      },
+      onError: (e) => {
+        alert(e.message);
+      }
+
     })
   };
 
-  return { signUpForm, authMessage, handleAuthvalidation,handleSignupSubmit }
+  return { signUpForm, authMessage, handleAuthvalidation, handleSignupSubmit }
 }

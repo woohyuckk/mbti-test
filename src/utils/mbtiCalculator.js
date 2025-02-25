@@ -35,19 +35,18 @@ export const calculateMBTI = (answers) => {
   const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
   // answers 배열을 순회하며 점수 누적
-  answers.forEach(({ type,  answerType }) => {
+  answers.forEach(({ type, answerType }) => {
     const [option1, option2] = type.split("/"); // E/I, S/N 등의 유형 분리
-    if (answerType === 0) { 
+    if (answerType === 0) {
       scores[option1]++;
-    } else if (answerType === 1) { 
+    } else if (answerType === 1) {
       scores[option2]++;
     }
   });
 
   // 각 점수 비교를 통해 최종 MBTI 유형 계산
-  const result = `${scores.E >= scores.I ? "E" : "I"}${
-    scores.S >= scores.N ? "S" : "N"
-  }${scores.T >= scores.F ? "T" : "F"}${scores.J >= scores.P ? "J" : "P"}`;
+  const result = `${scores.E >= scores.I ? "E" : "I"}${scores.S >= scores.N ? "S" : "N"
+    }${scores.T >= scores.F ? "T" : "F"}${scores.J >= scores.P ? "J" : "P"}`;
 
   return result;
 };

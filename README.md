@@ -1,6 +1,7 @@
 ## ✨ MBTI_TEST PROJECT
 ![image](https://github.com/user-attachments/assets/e4e8f941-9cd6-4f84-a7a0-f8b34ed4fea3)
 
+[MBTI 테스트 하러가기](https://mbti-test-gules.vercel.app/)
 ## 📢 프로젝트 소개
 ***MBTI TEST***는 20가지 질문을 통해서 간단한 MBTI 검사를 수행할 수 있는 웹사이트입니다.    
 회원가입/로그인을 완료한 후 HOME의 ***테스트하러가기*** 버튼과 상단 헤더의 ***테스트*** 테스트를 실행할 수 있으며,    

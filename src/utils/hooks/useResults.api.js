@@ -14,21 +14,21 @@ export const useResults = () => {
 
   // 추가
   const addTestResult = useMutation({
-    mutationFn: (newTestResult) => createTestResult(newTestResult),
+    mutationFn: createTestResult,
     onSuccess: () => {
       queryClient.invalidateQueries(["testResults"]);
     },
   });
   // 수정
   const updateTestResult = useMutation({
-    mutationFn: ({ id, visibility }) => updateTestResultVisibility(id, visibility),
+    mutationFn:updateTestResultVisibility,
     onSuccess: () => {
       queryClient.invalidateQueries(["testResults"]);
     },
   })
   // 삭제
   const removeTestResult = useMutation({
-    mutationFn: ({ id }) => deleteTestResult(id),
+    mutationFn: deleteTestResult,
     onSuccess: () => {
       queryClient.invalidateQueries(["testResults"]);
     },

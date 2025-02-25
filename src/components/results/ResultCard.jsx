@@ -10,11 +10,11 @@ const ResultCard = ({ result }) => {
   const isSignInUser = result.user === userId ? true : false;
 
   const toggleHide = (id, visibility) => {
-    updateTestResult.mutate({ id, visibility });
+    updateTestResult.mutate( id, visibility );
   };
 
   const deleteTestResultHandler = (id) => {
-    removeTestResult.mutate({ id });
+    removeTestResult.mutate( id );
   };
 
   return (

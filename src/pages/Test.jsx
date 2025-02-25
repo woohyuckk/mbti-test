@@ -14,7 +14,7 @@ const TestPage = () => {
   } = useAuthStore((state) => state);
    const { addTestResult } = useResults();
 
-  const handleTestSubmit = async (answers) => {
+  const handleTestSubmit = (answers) => {
     const mbtiResult = calculateMBTI(answers);
     const newTestResult = {
       nickname,
@@ -24,11 +24,8 @@ const TestPage = () => {
       date: FormattingDate(new Date()),
       user: userId,
     };
-    try {
-      await addTestResult.mutateAsync(newTestResult);
-    } catch (error) {
-      console.error(error);
-    }
+       addTestResult.mutate(newTestResult);
+
     setResult(mbtiResult);
 
     /* Test 결과는 mbtiResult 라는 변수에 저장이 됩니다. 이 데이터를 어떻게 API 를 이용해 처리 할 지 고민해주세요. */
